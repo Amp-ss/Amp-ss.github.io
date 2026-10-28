@@ -49,13 +49,13 @@ window.SITE = {
       year: "2026",
       context: "ENGG1101 Engineering Challenges · Group E6",
       role: "Visual tracking and sensor integration",
-      diagram: ["USB camera", "YOLOv8 nano person detection", "Person ID tracker", "Error vs. anchor point, with deadband", "Proportional gain + smoothing (α = 0.30)", "STS3215 pan / tilt servos"],
+      diagram: ["USB camera, 640 × 480", "YOLOv8 nano, people only, 256 px input", "Centroid tracker: person IDs, target lock", "Error vs. anchor point, 20 / 10 px deadband", "Pan / tilt gains 0.04 / 0.07 °/px, α = 0.30", "STS3215 bus servos via serial driver board"],
       loop: "Feedback: the servos move the camera, and the next frame measures the new error",
       problem: "Radar is expensive and struggles with small drones and birds at low altitude. Aerotrack tests a low-cost alternative: a camera on a pan–tilt gimbal that detects and follows a target using only a Raspberry Pi 5, with people as the safe indoor test case.",
-      approach: "I built the VL53L0X time-of-flight distance module: I²C setup, a 20 ms timing budget, polling that never blocks detection, out-of-range handling and an on-screen overlay. I also helped with the tracking code and servo testing, debugged and merged the code for the final prototype, and fixed a Raspberry Pi GPIO library conflict by moving the project into a working virtual environment.",
-      result: "YOLOv8 nano ran at 8–12 fps on the Pi's CPU with smooth, stable tracking. Deadbands, smoothing and a 0.3° minimum step removed servo jitter. Distance readings stayed within a few centimetres of a tape measure from 50 to 150 cm. Graded A+.",
+      approach: "The final system detects people with YOLOv8 nano, gives each one an ID with a centroid tracker, and locks onto the person nearest the centre; in focus mode the operator can switch to another person with one key. A VL53L0X sensor measures distance and an MPU6050 IMU reports the camera's roll and pitch on the live overlay. My part was the VL53L0X distance module: I²C setup, a 20 ms timing budget, a reading every fifth frame, an out-of-range cap at 2 m and the on-screen readout. I also helped with the tracking code and servo testing, debugged and merged the code for the final prototype, and fixed a Raspberry Pi GPIO library conflict by moving the project into a working virtual environment.",
+      result: "YOLOv8 nano ran at 8–12 fps on the Pi's CPU with smooth, stable tracking. Deadbands, smoothing, separate pan and tilt gains and a 0.3° minimum step removed servo jitter. Distance readings stayed within a few centimetres of a tape measure from 50 to 150 cm. Graded A+.",
       metrics: [{ figure: "A+", label: "final grade" }, { figure: "8–12", label: "fps on Pi 5 CPU" }, { figure: "50–150 cm", label: "distance range verified" }],
-      tags: ["Python", "OpenCV", "YOLOv8", "Raspberry Pi 5", "VL53L0X", "I²C"],
+      tags: ["Python", "OpenCV", "YOLOv8", "Raspberry Pi 5", "VL53L0X", "MPU6050", "I²C", "Serial bus servos"],
       // Design iterations, in order. Photos from the project report.
       gallery: [
         { src: "assets/aerotrack/1-cad-draft.jpg", caption: "First CAD draft (Fusion 360)" },

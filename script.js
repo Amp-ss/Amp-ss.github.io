@@ -56,7 +56,7 @@
           <div><span>pan / tilt</span><b id="r-pt">90° / 90°</b></div>
           <div><span>servo</span><b id="r-pwm">hold</b></div>
         </div>
-        <figcaption class="demo-caption">A sketch of Aerotrack's gimbal logic: aim at the upper chest, hold still inside the deadband, otherwise step the servos with a proportional gain and α = 0.30 smoothing. Move your pointer over the frame to steer the target.</figcaption>
+        <figcaption class="demo-caption">A sketch of Aerotrack's gimbal logic: aim at the upper chest, hold still inside the deadband, otherwise step the servos with separate pan and tilt gains (0.04 and 0.07 °/px) and α = 0.30 smoothing. Move your pointer over the frame to steer the target.</figcaption>
       </figure>
     </div>
   </section>`;
@@ -205,16 +205,18 @@
   // A sketch of Aerotrack's SimpleGimbalTracker. World coordinates run 0..1 and
   // the camera's view is a box centred on `cam`. As in the project report:
   // aim at a point 35% down the person's box, align it with an anchor line at
-  // 42% of frame height, ignore errors inside a 20 x 10 px deadband, apply a
-  // proportional gain, smooth with alpha = 0.30, and only send a command every
-  // 0.05 s when the angle change exceeds 0.3 degrees.
+  // 42% of frame height, ignore errors inside a 20 x 10 px deadband, apply
+  // proportional gains of 0.04 deg/px (pan) and 0.07 deg/px (tilt), smooth with
+  // alpha = 0.30, and only send a command every 0.05 s when the angle change is
+  // at least 0.3 degrees. Values from the final code (detect7.2.py).
   const canvas = document.getElementById("tracker");
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const FOV = 0.42;               // view box size in world units
   const FW = 640, FH = 480;       // camera frame in pixels
-  const KP = 0.6, ALPHA = 0.3;    // proportional gain (fraction of error), smoothing
+  const KP_X = 0.04, KP_Y = 0.07; // proportional gains in degrees per pixel (pan, tilt)
+  const ALPHA = 0.3;              // smoothing
   const DEAD_X = 20, DEAD_Y = 10; // deadband in px
   const DEG_PER_UNIT = 120;       // world units to servo degrees
   const MIN_STEP = 0.3, MIN_DT = 50;
@@ -269,10 +271,10 @@
   function step(now, force) {
     if (!force && now - lastCmd < MIN_DT) return;
     const e = errors();
-    const desX = cam.x + KP * e.dx / FW * FOV, desY = cam.y + KP * e.dy / FH * FOV;
+    const desX = cam.x + KP_X * e.dx / DEG_PER_UNIT, desY = cam.y + KP_Y * e.dy / DEG_PER_UNIT;
     const nx = (1 - ALPHA) * cam.x + ALPHA * desX, ny = (1 - ALPHA) * cam.y + ALPHA * desY;
     const stepDeg = Math.max(Math.abs(nx - cam.x), Math.abs(ny - cam.y)) * DEG_PER_UNIT;
-    moving = force ? (e.dx !== 0 || e.dy !== 0) : stepDeg > MIN_STEP;
+    moving = force ? (e.dx !== 0 || e.dy !== 0) : stepDeg >= MIN_STEP;
     if (force) { // reduced motion: jump straight to the settled position
       for (let i = 0; i < 200; i++) step(Infinity, false), (lastCmd = -Infinity);
       return;
