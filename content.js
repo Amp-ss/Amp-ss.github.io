@@ -100,7 +100,7 @@ window.SITE = {
       year: "2024",
       role: "Experiment design and testing",
       summary: "A chemical-free aphid trap. We 3D-printed ridged surfaces and trap shapes, studied how aphids move, and built a cone trap with an LED for night use.",
-      outcome: "Caught up to 78% of aphids, beating sticky paper. Gold Medal, JDIE 2024, Tokyo.",
+      outcome: "Changing the trap from a cylinder to a funnel raised the catch from 44% to 78%, beating yellow sticky paper. Gold Medal and INNOPA Special Award at JDIE 2024, Tokyo (343 entries from 25 countries).",
       tags: ["123D Design", "3D printing"]
     },
     {
@@ -152,7 +152,7 @@ window.SITE = {
     { stage: "hku", kind: "Scholarship", year: "2025, 2026", title: "Chevron REACH Scholarship", by: "Chevron and the Institute of International Education", note: "Awarded two years running" },
     { stage: "hku", kind: "Award", year: "2025–26", title: "CAES1001 Certificate of Excellence", by: "Centre for Applied English Studies, HKU", note: "" },
     { stage: "school", kind: "Award", year: "2024", title: "Best Innovation Award and Gold Medal", by: "Indonesia Inventors Day 2024, Bali", note: "KREADTISOL saliva cortisol test kit (team)" },
-    { stage: "school", kind: "Award", year: "2024", title: "Gold Medal and INNOPA Special Award", by: "Japan Design, Idea and Invention Expo 2024, Tokyo", note: "Aphid Spiral Trap" },
+    { stage: "school", kind: "Award", year: "2024", title: "Gold Medal and INNOPA Special Award", by: "Japan Design, Idea and Invention Expo 2024, Tokyo", note: "Aphid Spiral Trap (team) · 343 entries from 25 countries" },
     { stage: "school", kind: "Award", year: "2024", title: "Gold Medal (4th place)", by: "4th PCSHS Science Symposium, Chiang Rai", note: "Mangrove mapping" },
     { stage: "school", kind: "Award", year: "2024", title: "Gold Medal (4th place)", by: "Change Innovation Awards 2024, Bangkok", note: "KREADTISOL (team)" },
     { stage: "school", kind: "Award", year: "2024", title: "Best Oral Presentation", by: "2nd Silapakorn Young Scientist Forum", note: "Mangrove mapping" },
