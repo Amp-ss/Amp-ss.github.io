@@ -23,7 +23,7 @@
   const section = (id, title, tag, body, extra = "") => {
     sections.push({ id, title });
     return `<section id="${id}" aria-labelledby="${id}-h">
-      <div class="sec-head"><h2 id="${id}-h">${title}</h2>${tag ? `<span class="tag">${tag}</span>` : ""}${extra}</div>
+      <div class="sec-head"><span class="idx" aria-hidden="true">${String(sections.length).padStart(2, "0")}</span><h2 id="${id}-h">${title}</h2>${tag ? `<span class="tag">${tag}</span>` : ""}${extra}</div>
       ${body}</section>`;
   };
   const filters = (target) => `<div class="filters" role="group" aria-label="Filter" data-target="${target}">

@@ -162,7 +162,7 @@ window.SITE = {
 
   leadership: [
     { stage: "hku", years: "Apr 2026 – now", role: "Event Director", org: "HKU Thai Student Association", note: "Runs logistics and schedules for cultural and orientation events; leads teams of 15+ volunteers" },
-    { stage: "hku", years: "2026 – now", role: "Captain", org: "Chi Sun College Badminton Club, HKU", note: "Promoted to captain for 2026–27 after helping organise the JCSVIII Inter-Badminton Tournament 2025–26, where I scheduled the matches" },
+    { stage: "hku", years: "2026 – now", role: "Captain", org: "Chi Sun College Badminton Club, HKU", note: "Leads weekly training sessions; scheduled the matches for the JCSVIII Inter-Badminton Tournament 2025–26" },
     { stage: "hku", years: "HKU", role: "Faculty Student Ambassador", org: "HKU Faculty of Engineering", note: "Presented the BEng + MSc AIE programme at Information Day; Certificate of Appreciation" },
     { stage: "hku", years: "HKU", role: "Peer English Tutor", org: "Peer Impact Network, CEDARS", note: "Helped 5 students build confidence speaking English in 3 casual one-hour sessions" },
     { stage: "school", years: "High school", role: "Varsity Basketball Captain", org: "PCSHS Pathum Thani", note: "Captain for two years; Kaesad Games 2024 and 2025" },
