@@ -14,13 +14,15 @@ window.SITE = {
   initials: "SS",
   role: "Computer Engineering student · The University of Hong Kong",
   location: "Hong Kong SAR",
+  status: "Open to summer internships in Hong Kong and Thailand", // short line beside the photo; set to "" to hide it
   headline: "I build systems where hardware meets AI.",
-  intro: "Second-year BEng Computer Engineering student on HKU's integrated MSc AI in Engineering track, with a minor in Finance. My recent work ranges from Aerotrack, a Raspberry Pi 5 gimbal that detects and follows people in real time, to machine-learning maps of mangrove forests from satellite images.",
+  intro: "Second-year Computer Engineering student at HKU on the integrated BEng + MScEng in Artificial Intelligence in Engineering programme, with a minor in Finance. My recent work ranges from Aerotrack, a Raspberry Pi 5 gimbal that detects and follows people in real time, to machine-learning maps of mangrove forests from satellite images.",
   email: "supakornsurarat@gmail.com", // main contact
-  contactNote: "", // e.g. "I'm looking for a summer 2027 internship in embedded systems or AI." Leave empty for a plain line.
+  contactNote: "I'm looking for a summer internship in software engineering, IT, AI and data, or computer engineering, in Hong Kong or Thailand.", // e.g. "I'm looking for a summer 2027 internship in embedded systems or AI." Leave empty for a plain line.
   emailSecondary: "u3652527@connect.hku.hk", // university email, shown second
   cvFile: "assets/cv.pdf", // put your CV PDF in the assets folder with this name
   photo: "assets/photo.jpg", // 640 x 800 headshot; set to "" to hide it
+  updated: "November 2026", // shown in the footer; change it when you edit the site
 
   links: [
     { label: "LinkedIn", url: "https://www.linkedin.com/in/supakorn-surarat-200232206" },
@@ -29,9 +31,9 @@ window.SITE = {
 
   // Quick facts shown in the header.
   atAGlance: [
-    { label: "Degree", value: "BEng(CE) + MSc AI in Engineering" },
+    { label: "Degree", value: "BEng(CE) + MScEng AIE, HKU" },
     { label: "CGPA", value: "3.35 · latest semester 3.53" },
-    { label: "Code", value: "Python · C/C++ · SQL · Bash" },
+    { label: "Code", value: "Python · C/C++ · Bash" },
     { label: "Languages", value: "Thai · English (IELTS 7.5)" }
   ],
 
@@ -47,8 +49,9 @@ window.SITE = {
     {
       title: "Aerotrack: vision-based target-tracking gimbal",
       year: "2026",
+      summary: "A pan–tilt camera gimbal on a Raspberry Pi 5 that detects people with YOLOv8 nano and keeps the camera locked on one of them.",
       context: "ENGG1101 Engineering Challenges · Group E6",
-      role: "Visual tracking and sensor integration",
+      role: "Sensor integration and software developer",
       diagram: ["USB camera, 640 × 480", "YOLOv8 nano, people only, 256 px input", "Centroid tracker: person IDs, target lock", "Error vs. anchor point, 20 / 10 px deadband", "Pan / tilt gains 0.04 / 0.07 °/px, α = 0.30", "STS3215 bus servos via serial driver board"],
       loop: "Feedback: the servos move the camera, and the next frame measures the new error",
       problem: "Radar is expensive and struggles with small drones and birds at low altitude. Aerotrack tests a low-cost alternative: a camera on a pan–tilt gimbal that detects and follows a target using only a Raspberry Pi 5, with people as the safe indoor test case.",
@@ -68,6 +71,7 @@ window.SITE = {
     {
       title: "Mapping mangrove forests from satellite images",
       year: "2023–24",
+      summary: "A Google Earth Engine classifier that maps mangrove forest from Landsat 8 images, made more accurate by adding NDVI.",
       context: "PCSHS Pathum Thani research project · team",
       role: "Co-developer: proposed the topic, designed the accuracy tests",
       diagram: ["Landsat 8 imagery", "False-colour composite + NDVI", "Supervised classifier (Earth Engine)", "Accuracy validation", "Mangrove area trends"],
@@ -81,13 +85,14 @@ window.SITE = {
     {
       title: "Predicting orange sweetness from colour and peel",
       year: "2023–24",
+      summary: "Regression models that estimate an orange's sugar content from its peel colour and thickness, across Thai and Japanese varieties.",
       context: "Thai–Japanese exchange project with Ritsumeikan Keisho, Hokkaido",
       role: "Project leader",
       diagram: ["Micrometer + refractometer", "Photos → RGB values", "Excel dataset", "Linear regression (Jupyter)", "Sweetness prediction"],
       loop: "",
       problem: "Can you tell how sweet an orange is from the outside? We compared Thai and Japanese varieties.",
       approach: "Measured peel thickness and sugar content, extracted RGB colour values from controlled photos, and fitted single-variable linear regressions in Jupyter Notebook. Split the work between the Thai and Japanese teams when the fruit couldn't cross borders.",
-      result: "Green colour value predicted Seyoka orange sweetness with R² = 0.86; peel thickness reached 0.82.",
+      result: "Green colour value predicted Seyoka orange sweetness with R² = 0.86; peel thickness reached 0.82. Presented at the Hokkaido International Science Fair.",
       metrics: [{ figure: "0.86", label: "R², green colour" }, { figure: "2", label: "countries" }],
       tags: ["Linear regression", "Jupyter", "Excel", "Experimental design"]
     }
@@ -95,6 +100,23 @@ window.SITE = {
 
   // Smaller projects shown as compact cards.
   projects: [
+    {
+      title: "Floating energized-water detector",
+      year: "2026",
+      status: "In progress",
+      summary: "A small, cheap sensor that floats in flood water and warns people when the water is live, for example from a fallen 220 V cable. Three metal tips in a triangle each read a different voltage; comparing the three pairs gives the strength and direction of the danger.",
+      outcome: "Experiment 1: current rose linearly with depth (R² = 0.998).",
+      tags: ["Electronics", "Sensing", "Experimental design"]
+    },
+    {
+      title: "TMedge: thermal-sensor seat occupancy",
+      year: "2026",
+      status: "In progress",
+      role: "IoT team member, thermal camera work in the ML team",
+      summary: "A team project that turns thermal sensor readings into live seat availability for HKUMySeat.",
+      outcome: "",
+      tags: ["Thermal imaging", "IoT", "Machine learning"]
+    },
     {
       title: "Aphid Spiral Trap",
       year: "2024",
@@ -115,7 +137,7 @@ window.SITE = {
 
   education: [
     {
-      degree: "BEng Computer Engineering, integrated with MSc Artificial Intelligence in Engineering",
+      degree: "Bachelor of Engineering and Master of Science in Engineering in Artificial Intelligence in Engineering (BEng(CE) + MScEng AIE)",
       school: "The University of Hong Kong",
       start: "Sep 2025",
       end: "Present",
@@ -139,14 +161,14 @@ window.SITE = {
       school: "Marcos de Niza High School, Tempe, Arizona, USA",
       start: "2021",
       end: "2022",
-      result: "AFS Chevron Scholar",
-      details: ["One of two students selected in Thailand for the fully funded scholarship"]
+      result: "AFS Scholarship",
+      details: ["One of two students selected nationally in Thailand; exchange fully funded by the AFS Scholarship"]
     }
   ],
 
   // stage: "hku" or "school" drives the filter buttons.
   honours: [
-    { stage: "hku", kind: "Scholarship", year: "2025", title: "HKSAR Government Belt and Road Scholarship (Thailand)", by: "HKSAR Government Scholarship Fund", note: "Full award covering tuition and living costs" },
+    { stage: "hku", kind: "Scholarship", year: "2025–26", title: "HKSAR Government Belt and Road Scholarship (Thailand)", by: "HKSAR Government Scholarship Fund", note: "Full award covering tuition and living costs" },
     { stage: "hku", kind: "Scholarship", year: "2025–26", title: "HKSAR Government Talent Development Scholarship", by: "HKSAR Government Scholarship Fund", note: "Innovation, Science and Technology" },
     { stage: "hku", kind: "Scholarship", year: "2025–26", title: "HKU Scholarship for Future Leaders", by: "The University of Hong Kong", note: "" },
     { stage: "hku", kind: "Scholarship", year: "2025, 2026", title: "Chevron REACH Scholarship", by: "Chevron and the Institute of International Education", note: "Awarded two years running" },
@@ -157,14 +179,15 @@ window.SITE = {
     { stage: "school", kind: "Award", year: "2024", title: "Gold Medal (4th place)", by: "Change Innovation Awards 2024, Bangkok", note: "KREADTISOL (team)" },
     { stage: "school", kind: "Award", year: "2024", title: "Best Oral Presentation", by: "2nd Silapakorn Young Scientist Forum", note: "Mangrove mapping" },
     { stage: "school", kind: "Award", year: "2024", title: "Selected school presenter", by: "Thailand–Japan Student ICT Fair (Ministry of Education)", note: "Mangrove mapping" },
-    { stage: "school", kind: "Scholarship", year: "2021", title: "AFS Chevron Scholarship", by: "AFS Intercultural Programs", note: "1 of 2 students selected in Thailand" }
+    { stage: "school", kind: "Scholarship", year: "2021–22", title: "AFS Scholarship", by: "AFS Intercultural Programs", note: "1 of 2 students selected nationally; fully funded exchange year in the USA" }
   ],
 
   leadership: [
     { stage: "hku", years: "Apr 2026 – now", role: "Event Director", org: "HKU Thai Student Association", note: "Runs logistics and schedules for cultural and orientation events; leads teams of 15+ volunteers" },
     { stage: "hku", years: "2026 – now", role: "Captain", org: "Chi Sun College Badminton Club, HKU", note: "Leads weekly training sessions; scheduled the matches for the JCSVIII Inter-Badminton Tournament 2025–26" },
-    { stage: "hku", years: "HKU", role: "Faculty Student Ambassador", org: "HKU Faculty of Engineering", note: "Presented the BEng + MSc AIE programme at Information Day; Certificate of Appreciation" },
+    { stage: "hku", years: "2025–26", role: "Faculty Student Ambassador", org: "HKU Faculty of Engineering", note: "Briefed prospective students and parents on the BEng + MScEng AIE programme at HKU Information Day; Certificate of Appreciation" },
     { stage: "hku", years: "HKU", role: "Peer English Tutor", org: "Peer Impact Network, CEDARS", note: "Helped 5 students build confidence speaking English in 3 casual one-hour sessions" },
+    { stage: "hku", years: "HKU", role: "Social Media Team", org: "Chi Sun College, HKU", note: "Content, photography and event coverage for the college Instagram" },
     { stage: "school", years: "High school", role: "Varsity Basketball Captain", org: "PCSHS Pathum Thani", note: "Captain for two years; Kaesad Games 2024 and 2025" },
     { stage: "school", years: "High school", role: "Vice President, 17th Environmental Camp", org: "PCSHS Pathum Thani", note: "Planned the camp and ran fundraising to cover its costs" }
   ],
@@ -174,7 +197,6 @@ window.SITE = {
     { group: "Programming", items: [
       { name: "Python", where: "Aerotrack, ENGG1330" },
       { name: "C/C++", where: "COMP2113 systems programming" },
-      { name: "SQL", where: "Database querying" },
       { name: "Bash / Shell", where: "COMP2113, Linux" }
     ] },
     { group: "AI and data", items: [
@@ -185,13 +207,13 @@ window.SITE = {
     ] },
     { group: "Hardware", items: [
       { name: "Raspberry Pi 5, embedded Linux", where: "Aerotrack" },
-      { name: "Sensors over I²C (VL53L0X)", where: "Aerotrack distance module" },
+      { name: "I²C sensors (VL53L0X), serial bus servos", where: "Aerotrack" },
       { name: "Circuit analysis", where: "ENGG1310, ELEC2346" },
       { name: "CAD and 3D printing", where: "Aphid Spiral Trap" }
     ] },
     { group: "Tools and finance", items: [
       { name: "Git, GitHub, Linux / UNIX", where: "Coursework and projects" },
-      { name: "Excel, Power BI", where: "Orange study, training course" },
+      { name: "Excel; Power BI (foundational)", where: "Orange study; training course" },
       { name: "Accounting, corporate finance", where: "ACCT1101 (B+), FINA1310" }
     ] },
     { group: "Languages", items: [
