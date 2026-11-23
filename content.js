@@ -50,7 +50,7 @@ window.SITE = {
       title: "Aerotrack: vision-based target-tracking gimbal",
       year: "2026",
       summary: "A pan–tilt camera gimbal on a Raspberry Pi 5 that detects people with YOLOv8 nano and keeps the camera locked on one of them.",
-      context: "ENGG1101 Engineering Challenges · Group E6",
+      context: "ENGG1101 Engineering Challenges · Group E6, team of about 5",
       role: "Sensor integration and software developer",
       diagram: ["USB camera, 640 × 480", "YOLOv8 nano, people only, 256 px input", "Centroid tracker: person IDs, target lock", "Error vs. anchor point, 20 / 10 px deadband", "Pan / tilt gains 0.04 / 0.07 °/px, α = 0.30", "STS3215 bus servos via serial driver board"],
       loop: "Feedback: the servos move the camera, and the next frame measures the new error",
@@ -112,7 +112,7 @@ window.SITE = {
       title: "TMedge: thermal-sensor seat occupancy",
       year: "2026",
       status: "In progress",
-      role: "IoT team member, thermal camera work in the ML team",
+      role: "Machine learning team member, working on the thermal image camera",
       summary: "A team project that turns thermal sensor readings into live seat availability for HKUMySeat.",
       outcome: "",
       tags: ["Thermal imaging", "IoT", "Machine learning"]
