@@ -68,6 +68,7 @@
           <h3>${t(c.title)}</h3>
           ${c.summary ? `<p class="summary">${t(c.summary)}</p>` : ""}
           ${c.role ? `<p class="myrole">My role: <b>${t(c.role)}</b></p>` : ""}
+          ${has(c.mine) ? `<ul class="mine">${c.mine.map((m) => `<li>${t(m)}</li>`).join("")}</ul>` : ""}
           ${has(c.metrics) ? `<div class="metrics">${c.metrics.map((m) => `<div><b>${t(m.figure)}</b><span>${t(m.label)}</span></div>`).join("")}</div>` : ""}
           ${tags(c.tags)}
         </div>
@@ -120,12 +121,14 @@
 
   // ---------- Honours ----------
   if (has(S.honours)) {
-    main += section("awards", "Scholarships &amp; awards", `<div class="rows" id="honours-rows">${S.honours.map((h) => `
+    const hrow = (h) => `
       <article class="row reveal" data-stage="${esc(h.stage)}">
         <div class="when">${t(h.year)}</div>
         <div><h3>${t(h.title)}</h3><p class="org">${t(h.by)}</p>${h.note ? `<p class="note">${t(h.note)}</p>` : ""}</div>
-        <span class="side">${t(h.kind)}</span>
-      </article>`).join("")}</div>`, count(S.honours.length, "total") + filters("honours-rows"));
+        <span class="side"></span>
+      </article>`;
+    const group = (kind, label) => { const list = S.honours.filter((h) => h.kind === kind); return list.length ? `<div class="hgroup" data-group><h3 class="more-h">${label} <span>${list.length}</span></h3><div class="rows">${list.map(hrow).join("")}</div></div>` : ""; };
+    main += section("awards", "Scholarships &amp; awards", `<div id="honours-rows">${group("Scholarship", "Scholarships")}${group("Award", "Awards and recognition")}</div>`, count(S.honours.length, "total") + filters("honours-rows"));
   }
 
   // ---------- Skills ----------
@@ -146,7 +149,7 @@
       <div class="contact-links">${cvBtn("Download CV")}${links.map(ext).join("")}</div>
     </div>`, rule);
 
-  main += `<footer><span>© ${new Date().getFullYear()} ${t(S.name)}${S.location ? ` · ${t(S.location)}` : ""}</span><span>${S.updated ? `Last updated ${t(S.updated)}` : ""}</span></footer>`;
+  main += `<footer><span>© ${new Date().getFullYear()} ${t(S.name)}${S.location ? ` · ${t(S.location)}` : ""}</span><span>${S.updated ? `Last updated ${t(S.updated)} · ` : ""}<a href="#top">Back to top ↑</a></span></footer>`;
 
   // ---------- Identity column + mobile bar ----------
   const nav = sections.map((s) => `<a href="#${s.id}" data-id="${s.id}">${s.title}</a>`).join("");
@@ -201,13 +204,17 @@
     if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = sections[sections.length - 1].id;
     if (current !== last) {
       last = current;
-      navLinks.forEach((a) => { const on = a.dataset.id === current; a.classList.toggle("active", on); if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+      navLinks.forEach((a) => { const on = a.dataset.id === current; a.classList.toggle("active", on); if (on) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current"); });
       const chip = mnav.querySelector(`a[data-id="${current}"]`);
       if (chip && mnav.scrollWidth > mnav.clientWidth) mnav.scrollTo({ left: chip.offsetLeft - 16, behavior: "smooth" });
     }
     mbar.classList.toggle("scrolled", window.scrollY > 8);
+    mnav.classList.toggle("at-end", mnav.scrollLeft + mnav.clientWidth >= mnav.scrollWidth - 4);
   };
   window.addEventListener("scroll", onScroll, { passive: true });
+  mnav.addEventListener("scroll", () => mnav.classList.toggle("at-end", mnav.scrollLeft + mnav.clientWidth >= mnav.scrollWidth - 4), { passive: true });
+  // Open every case study before printing so the printout is complete.
+  window.addEventListener("beforeprint", () => document.querySelectorAll(".case details").forEach((d) => (d.open = true)));
   onScroll();
 
   // ---------- Filters ----------
@@ -218,6 +225,7 @@
       if (!b) return;
       group.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
       rows.querySelectorAll(".row").forEach((r) => { r.hidden = b.dataset.stage !== "all" && r.dataset.stage !== b.dataset.stage; });
+      rows.querySelectorAll("[data-group]").forEach((g) => { g.hidden = !g.querySelector(".row:not([hidden])"); });
     });
   });
 

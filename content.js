@@ -12,7 +12,7 @@
 window.SITE = {
   name: "Supakorn Surarat",
   initials: "SS",
-  role: "Computer Engineering student · The University of Hong Kong",
+  role: "Year 2 Computer Engineering student at The University of Hong Kong",
   location: "Hong Kong SAR",
   status: "Open to summer internships in Hong Kong and Thailand", // short line beside the photo; set to "" to hide it
   headline: "I build systems where hardware meets AI.",
@@ -52,6 +52,7 @@ window.SITE = {
       summary: "A pan–tilt camera gimbal on a Raspberry Pi 5 that detects people with YOLOv8 nano and keeps the camera locked on one of them.",
       context: "ENGG1101 Engineering Challenges · Group E6, team of about 5",
       role: "Sensor integration and software developer",
+      mine: ["Built the VL53L0X time-of-flight distance module over I²C", "Helped write and test the tracking and servo code", "Debugged and merged the team's code for the final prototype"],
       diagram: ["USB camera, 640 × 480", "YOLOv8 nano, people only, 256 px input", "Centroid tracker: person IDs, target lock", "Error vs. anchor point, 20 / 10 px deadband", "Pan / tilt gains 0.04 / 0.07 °/px, α = 0.30", "STS3215 bus servos via serial driver board"],
       loop: "Feedback: the servos move the camera, and the next frame measures the new error",
       problem: "Radar is expensive and struggles with small drones and birds at low altitude. Aerotrack tests a low-cost alternative: a camera on a pan–tilt gimbal that detects and follows a target using only a Raspberry Pi 5, with people as the safe indoor test case.",
@@ -74,6 +75,7 @@ window.SITE = {
       summary: "A Google Earth Engine classifier that maps mangrove forest from Landsat 8 images, made more accurate by adding NDVI.",
       context: "PCSHS Pathum Thani research project · team",
       role: "Co-developer: proposed the topic, designed the accuracy tests",
+      mine: ["Proposed the research topic", "Designed and ran the accuracy tests"],
       diagram: ["Landsat 8 imagery", "False-colour composite + NDVI", "Supervised classifier (Earth Engine)", "Accuracy validation", "Mangrove area trends"],
       loop: "",
       problem: "Measuring mangrove area by field survey is slow and expensive. We wanted a cheap way to monitor it from space.",
@@ -88,6 +90,7 @@ window.SITE = {
       summary: "Regression models that estimate an orange's sugar content from its peel colour and thickness, across Thai and Japanese varieties.",
       context: "Thai–Japanese exchange project with Ritsumeikan Keisho, Hokkaido",
       role: "Project leader",
+      mine: ["Led the project across the Thai and Japanese teams"],
       diagram: ["Micrometer + refractometer", "Photos → RGB values", "Excel dataset", "Linear regression (Jupyter)", "Sweetness prediction"],
       loop: "",
       problem: "Can you tell how sweet an orange is from the outside? We compared Thai and Japanese varieties.",
@@ -104,6 +107,7 @@ window.SITE = {
       title: "Floating energized-water detector",
       year: "2026",
       status: "In progress",
+      role: "Independent project",
       summary: "A small, cheap sensor that floats in flood water and warns people when the water is live, for example from a fallen 220 V cable. Three metal tips in a triangle each read a different voltage; comparing the three pairs gives the strength and direction of the danger.",
       outcome: "Experiment 1: current rose linearly with depth (R² = 0.998).",
       tags: ["Electronics", "Sensing", "Experimental design"]
